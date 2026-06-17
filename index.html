@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maaf ya Sayang... ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #ffe4e6, #fecdd3);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Galeri Foto */
+        .photo-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .photo-container img {
+            width: 130px;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 3px solid #f43f5e;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .photo-container img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Teks Ucapan */
+        .apology-text {
+            font-size: 1rem;
+            color: #4c1d95;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            text-align: justify;
+            background: #fff1f2;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid #f43f5e;
+        }
+
+        /* Tombol Aksi */
+        .btn-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 60px;
+            position: relative;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        #btn-terima {
+            background-color: #10b981;
+            color: white;
+        }
+
+        #btn-terima:hover {
+            background-color: #059669;
+            transform: scale(1.05);
+        }
+
+        #btn-tidak {
+            background-color: #ef4444;
+            color: white;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Foto Pemanis -->
+        <div class="photo-container">
+            <img src="foto1.jpeg" alt="Foto Kenangan 1">
+            <img src="foto2.jpeg" alt="Foto Kenangan 2">
+            <img src="foto3.jpeg" alt="Foto Kenangan 3">
+        </div>
+
+        <!-- Kalimat Maaf (Sesuai Request - Tidak Diubah Sama Sekali) -->
+        <div class="apology-text">
+            "Sayang ku cintaku duniaku yang mulia kanjeng ratuku.. maaf atas segala yang ku perbuat sama ayangg tiada niatan ku buatki sakit hati karna ayangg adalah segalanya bagiku.. sayangg mau sama sama ayangg selamanya ayangg tuntun aku jadi apa yang ayangg mau.. ayangg sebenarnya aku kangen sama ayangg mau ketemu setiap saat sama ayangg tadi itu sebenarnya semangatttt sayangg serius pas ayangg telpon... ayangg nd tau mau apa lagi sayangg kenapa juga sa begitu tadi... padalah senangnya mi kalau ayangg telpon.. ayangg maaf ya sayangg pengen jadi satu satu nya buat ayangg.. sayangg... makasih banyakk ayanggg...."
+        </div>
+
+        <!-- Tombol Interaktif -->
+        <div class="btn-container">
+            <button class="btn" id="btn-terima">Terima</button>
+            <button class="btn" id="btn-tidak">Tidak Terima</button>
+        </div>
+    </div>
+
+    <script>
+        const btnTerima = document.getElementById('btn-terima');
+        const btnTidak = document.getElementById('btn-tidak');
+
+        // Aksi ketika tombol Terima diklik (Langsung redirect ke WhatsApp)
+        btnTerima.addEventListener('click', function() {
+            const nomorWA = "6282348928733"; // Format international tanpa angka 0 di depan
+            const pesan = encodeURIComponent("Iya sayang, permintaan maafmu diterima. Aku sayang kamu juga! ❤️");
+            window.location.href = `https://wa.me/${nomorWA}?text=${pesan}`;
+        });
+
+        // Fungsi untuk memindahkan tombol "Tidak Terima" secara acak saat diklik
+        btnTidak.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Menghitung batas area aman agar tombol tidak keluar dari layar browser
+            const batasX = window.innerWidth - btnTidak.offsetWidth - 20;
+            const batasY = window.innerHeight - btnTidak.offsetHeight - 20;
+
+            // Menghasilkan posisi acak baru
+            const acakX = Math.max(10, Math.floor(Math.random() * batasX));
+            const acakY = Math.max(10, Math.floor(Math.random() * batasY));
+
+            // Mengubah posisi tombol menjadi fixed agar bebas bergerak di layar luar container
+            btnTidak.style.position = 'fixed';
+            btnInsideContainer = false;
+            btnTidak.style.left = `${acakX}px`;
+            btnTidak.style.top = `${acakY}px`;
+        });
+        
+        // Opsional: Ditambahkan trigger hover juga agar makin seru dan sulit diklik
+        btnTidak.addEventListener('mouseover', function() {
+            btnTidak.click();
+        });
+    </script>
+
+</body>
+</html>
